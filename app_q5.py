@@ -24,8 +24,13 @@ st.dataframe(data.head())
 # ----------------------------------
 # TODO: Prophet 모델을 생성하고, 11년 주기 커스텀 seasonality를 추가한 후 학습하세요.
 # '''코드를 작성하시오'''
-model = Prophet(yearly_seasonality=False)
-model.add_seasonality(name='11year_cycle', period=11*365.25, fourier_order=5)
+model = Prophet(
+    yearly_seasonality=False,  # 기본 연간 시즌얼리티 비활성화
+    changepoint_prior_scale=0.05,
+    seasonality_mode='additive'
+)
+# 약 11년 주기의 태양 흑점 사이클을 커스텀 시즌얼리티로 추가 (fourier_order는 데이터에 따라 조정)
+model.add_seasonality(name='sunspot_cycle', period=11, fourier_order=5)
 model.fit(data)
 
 # ----------------------------------
@@ -33,7 +38,7 @@ model.fit(data)
 # ----------------------------------
 # TODO: 30년간 연 단위 예측을 수행하고, 결과를 forecast에 저장하세요.
 # '''코드를 작성하시오'''
-future = model.make_future_dataframe(periods=30, freq='Y')  # 30년 연 단위 예측
+future = model.make_future_dataframe(periods=30, freq='Y')
 forecast = model.predict(future)
 
 # ----------------------------------
