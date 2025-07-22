@@ -12,7 +12,7 @@ st.title("🌞 Prophet Forecast with Preprocessed Sunspot Data")
 # ----------------------------------
 # TODO: 'sunspots_for_prophet.csv' 파일을 불러오고, 'ds' 컬럼을 datetime 형식으로 변환하세요.
 '''코드를 작성하시오'''
-data = pd.read_csv("./sunspots_for_prophet.csv")
+data = pd.read_csv(".data/sunspots_for_prophet.csv")
 data['ds'] = pd.to_datetime(data['ds'])
 
 st.subheader("📄 데이터 미리보기")
