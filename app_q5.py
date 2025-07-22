@@ -24,7 +24,7 @@ st.dataframe(data.head())
 # ----------------------------------
 # TODO: Prophet 모델을 생성하고, 11년 주기 커스텀 seasonality를 추가한 후 학습하세요.
 # '''코드를 작성하시오'''
-model = Prophet()
+model = Prophet(yearly_seasonality=False)
 model.add_seasonality(name='11year_cycle', period=11*365.25, fourier_order=5)
 model.fit(data)
 
