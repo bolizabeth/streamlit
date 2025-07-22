@@ -76,6 +76,10 @@ ax.plot(forecast["ds"], forecast["yhat"], label="Predicted", color="red", linest
 # ax.fill_between(forecast["ds"], forecast["yhat_lower"], forecast["yhat_upper"], ...)
 ax.fill_between(forecast["ds"], forecast["yhat_lower"], forecast["yhat_upper"], color="red", alpha=0.3, label="Confidence Interval")
 
+ax.title("Sunspots: Actual vs. Predicted with Prediction Intervals")
+ax.xlabel("Year")
+ax.ylabel("Sun Activity")
+ax.legend()
 ax.grid(True)
 st.pyplot(fig3)
 
@@ -98,7 +102,10 @@ fig4, ax2 = plt.subplots(figsize=(14, 4))
 ax2.plot(merged['ds'], merged['residual'], label='Residual', color='purple')
 # ax2.axhline(0, ...)
 ax2.axhline(0, color='black', linestyle='--', linewidth=1)
-
+ax2.title("Residual Analysis (Actual - Predicted)")
+ax2.xlabel("Year")
+ax2.ylabel("Residual")
+ax2.legend()
 ax2.grid(True)
 st.pyplot(fig4)
 
